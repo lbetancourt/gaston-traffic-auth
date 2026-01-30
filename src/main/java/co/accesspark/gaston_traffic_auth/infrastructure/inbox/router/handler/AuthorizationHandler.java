@@ -10,7 +10,7 @@ public class AuthorizationHandler {
 
     public Mono<ServerResponse> auth(ServerRequest request) {
         // Envoy envía los headers originales aquí
-        String authHeader = request.headers().firstHeader("authorization");
+        String authHeader = request.headers().firstHeader("Authorization");
         System.out.println("authHeader: " + authHeader);
 
         if (isValid(authHeader)) {

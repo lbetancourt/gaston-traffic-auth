@@ -1,0 +1,9 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: gaston-traffic-auth
+  r2dbc:
+    url:  ${POSTGRES_DATASOURCE_URL:r2dbc:postgresql://localhost:5432/datastore}
+    username: ${POSTGRES_DB_USERNAME:postgres}
+    password: ${POSTGRES_DB_PASSWORD:postgres}

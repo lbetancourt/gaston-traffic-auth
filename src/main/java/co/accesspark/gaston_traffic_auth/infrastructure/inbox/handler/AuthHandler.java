@@ -1,4 +1,4 @@
-package co.accesspark.gaston_traffic_auth.infrastructure.inbox.router.handler;
+package co.accesspark.gaston_traffic_auth.infrastructure.inbox.handler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -6,8 +6,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class AuthorizationHandler {
-
+public class AuthHandler {
     public Mono<ServerResponse> auth(ServerRequest request) {
         // Envoy envía los headers originales aquí
         String authHeader = request.headers().firstHeader("Authorization");
@@ -29,5 +28,4 @@ public class AuthorizationHandler {
         // Tu lógica de validación real aquí
         return token != null && token.startsWith("Bearer ");
     }
-
 }

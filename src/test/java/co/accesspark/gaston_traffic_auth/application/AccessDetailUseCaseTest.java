@@ -64,4 +64,20 @@ public class AccessDetailUseCaseTest {
                 .expectNext("")
                 .verifyComplete();
     }
+
+
+    @Test
+    void findCompaniesByAccessCode_RepositoryError() {
+        String accessCode = "FAIL-CODE";
+        String errorMessage = "Database connection failed";
+
+        when(accessDetailRepositoryPort.findByAccessCode(accessCode))
+                .thenReturn(Flux.error(new RuntimeException(errorMessage)));
+
+        StepVerifier.create(accessDetailUseCase.findCompaniesByAccessCode(accessCode))
+                .expectErrorMatches(throwable ->
+                        throwable instanceof RuntimeException &&
+                                throwable.getMessage().equals(errorMessage))
+                .verify();
+    }
 }

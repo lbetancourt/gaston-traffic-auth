@@ -14,10 +14,7 @@ public class AuthRouter {
     @Bean
     public RouterFunction<ServerResponse> authRoutes(AuthHandler handler) {
         return route()
-                // Agrupamos bajo el path /auth y sus sub-rutas
-                .nest(path("/auth").or(path("/auth/**")), builder -> builder
-                        .route(request -> true, handler::auth)
-                )
+                .route(path("/auth").or(path("/auth/**")), handler::auth)
                 .build();
     }
 }
